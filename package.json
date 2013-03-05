@@ -1,7 +1,7 @@
 {
                     
     "name"          : "atropa-server",
-    "version"       : "0.0.7",
+    "version"       : "0.0.8",
     "main"          : "./atropa-server.js",
     "description"   : "A simple http server for node.",
     "keywords"      : ["server", "utilities", "atropa"],
