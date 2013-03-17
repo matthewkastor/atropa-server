@@ -1,25 +1,25 @@
 /*jslint
     indent: 4,
     maxerr: 100,
-    node: true sloppy: true,
+    node: true,
+    sloppy: true,
     white: true,
-    stupid: true
+    stupid: true,
+    nomen: true,
+    vars: true
 */
 
-var fs, path, querystring, url, mime;
-
-fs = require('fs');
-path = require('path');
-querystring = require('querystring');
-url = require('url');
-mime = require('mime');
+var fs = require('fs');
+var path = require('path');
+var querystring = require('querystring');
+var url = require('url');
+var mime = require('mime');
 
 function dirList (location) {
     var links = fs.readdirSync(location).map(function (listing) {
-        var link, whatever;
         
-        link = '';
-        whatever = fs.statSync(path.normalize(location + '/' + listing));
+        var link = '';
+        var whatever = fs.statSync(path.normalize(location + '/' + listing));
         
         if(whatever.isFile()) {
             link = '<a href="./' + listing + '">' + listing + '</a><br>';
@@ -50,9 +50,7 @@ function redirect (response, request, toLocation) {
 
 function dir(response, request, location) {
 	console.log('request handler "dir" was called');
-    var lastCharIsSlash;
-    
-    lastCharIsSlash = location.charAt(location.length - 1);
+    var lastCharIsSlash = location.charAt(location.length - 1);
     lastCharIsSlash = (lastCharIsSlash === '/' || lastCharIsSlash === '\\');
     
     if(lastCharIsSlash === false) {
@@ -101,5 +99,12 @@ function file (response, request, fileLocation) {
     respondWithFileContents(response, fileLocation);
 }
 
+function mod(response, request, fileLocation) {
+    console.log('request handler "mod" was called');
+    var req = require(fileLocation);
+    req(response, request);
+}
+
 exports.file = file;
 exports.dir = dir;
+exports.mod = mod;
