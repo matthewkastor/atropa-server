@@ -1,4 +1,13 @@
-/*jslint indent: 4, maxerr: 100, node: true sloppy: true, white: true */
+/*jslint
+    indent: 4,
+    maxerr: 100,
+    node: true,
+    sloppy: true,
+    white: true,
+    stupid: true,
+    nomen: true,
+    vars: true
+*/
 
 var http = require("http"),
     url = require('url');
