@@ -1,9 +1,9 @@
 {
                     
     "name"          : "atropa-server",
-    "version"       : "0.0.9",
+    "version"       : "0.0.9-1",
     "main"          : "./atropa-server.js",
-    "description"   : "A simple http server for node.",
+    "description"   : "A simple http server for node with lazy module loading.",
     "keywords"      : ["server", "utilities", "atropa"],
     "homepage"      : "https://github.com/matthewkastor/atropa-server/",
     "bugs"          : "https://github.com/matthewkastor/atropa-server/issues",
