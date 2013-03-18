@@ -20,6 +20,7 @@
                         "node"      : ">=0.8.14"
     },
     "dependencies"  : {
-                        "mime"      : "*"
+                        "mime"      : ">=1.2.9",
+                        "mustache"  : ">=0.7.2"
     }
 }
