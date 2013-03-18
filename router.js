@@ -19,7 +19,7 @@ function route(handle, pathname, response, request) {
     var locationIsModule = false;
     var locationIsFile = false;
     var locationIsDirectory = false;
-    var location = path.normalize(__dirname + '/../../' + pathname);
+    var location = path.normalize(process.env.serverroot + '/' + pathname);
     
 	if (fs.existsSync(location)) {
         if(fs.statSync(location).isFile()) {

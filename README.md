@@ -1,4 +1,4 @@
-A simple http server for node with lazy module loading.
+A simple http server for node with autoindexing and lazy module loading.
 
 This is a rough draft, really rough. I believe I've got autoindexing
 working properly. I've also put in some redirection logic so that the current
@@ -10,9 +10,10 @@ be processed server side. `jsn` files are to be written as modules exporting a
 single function which takes the response and request objects and handles them.
 
 The web root is the folder containing your node_modules folder. This server
-automatically finds index.html if given a directory. This server uses the mime
-module to automatically serve files with the proper content type. See the
-documentation on the mime module for instructions on adding custom mime types.
+automatically finds index.html if given a directory. This server uses the [mime
+module](https://npmjs.org/package/mime) to automatically serve files with the 
+proper content type. See the documentation on the mime module for instructions 
+on adding custom mime types.
 
 # Basic Usage
 
@@ -38,6 +39,9 @@ In server.js do:
 ```
 var atropaServer = require('atropa-server');
 // starting the server on port 9999
+// an optional second parameter for setting the server root
+// as an absolute path may be specified. The server root 
+// defaults to `path.dirname(process.mainModule.filename)`
 atropaServer.start(9999);
 ```
 

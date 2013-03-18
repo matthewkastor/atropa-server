@@ -9,12 +9,13 @@
     vars: true
 */
 
-var server           = require('./server.js'),
-    router           = require('./router.js'),
-    requestHandlers  = require('./requestHandlers.js'),
-    port             = 8888;
-    
-function start (userPort) {
+var server           = require('./server.js');
+var router           = require('./router.js');
+var requestHandlers  = require('./requestHandlers.js');
+var path             = require('path');
+
+function start (userPort, serverroot) {
+    process.env.serverroot = serverroot || path.dirname(process.mainModule.filename);
     userPort = userPort || 8888;
     server.start(router.route, requestHandlers, userPort);
 }
