@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {{#scripts}}
+        <script src="{{{src}}}"></script>
+        {{/scripts}}
+        <title>
+            Index of: {{{title}}}
+        </title>
+    </head>
+    <body>
+        <h1>
+            Index of: {{{title}}}
+        </h1>
+
+        <table class="sortable">
+            <thead>
+                <tr>
+                    <th>
+                        Location
+                    </th>
+                    <th>
+                        Size
+                    </th>
+                    <th>
+                        Mime Type
+                    </th>
+                    <th>
+                        Created
+                    </th>
+                    <th>
+                        Modified
+                    </th>
+                    <th>
+                        Accessed
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {{#rows}}
+                <tr>
+                    <td>
+                        <a href="./{{{link}}}">{{{link}}}</a>
+                    </td>
+                    <td>
+                        {{{size}}}
+                    </td>
+                    <td>
+                        {{{mimeType}}}
+                    </td>
+                    <td>
+                        {{{ctime}}}
+                    </td>
+                    <td>
+                        {{{mtime}}}
+                    </td>
+                    <td>
+                        {{{atime}}}
+                    </td>
+                </tr>
+            {{/rows}}
+            </tbody>
+        </table>
+    </body>
+</html>

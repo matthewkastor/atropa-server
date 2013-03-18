@@ -14,22 +14,64 @@ var path = require('path');
 var querystring = require('querystring');
 var url = require('url');
 var mime = require('mime');
+var mustache = require('mustache');
+
+mime.define({
+    'application/javascript': ['jsn']
+});
+
+mime.define({
+    'text/plain': ['ini']
+});
 
 function dirList (location) {
-    var links = fs.readdirSync(location).map(function (listing) {
+    var template = fs.readFileSync(
+        path.normalize(__dirname + '/autoindex/autoindex.mustache'),
+        'utf8'
+    );
+    
+    var sortablejsPath = '/' + path.relative(
+        process.env.serverroot,
+        __dirname + '/autoindex/sorttable.js'
+    ).replace(/\\/g, '/');
+    
+    var view = {};
+    
+    view.title = (
+        '/' + path.relative(process.env.serverroot, location) + '/'
+    ).replace(/\\/g, '/').replace(/\/{2,}/g, '/');
+    
+    view.scripts = [
+        {'src' : sortablejsPath}
+    ];
+    view.rows = fs.readdirSync(location).map(function (listing) {
         
-        var link = '';
-        var whatever = fs.statSync(path.normalize(location + '/' + listing));
+        var out = fs.statSync(path.normalize(location + '/' + listing));
+        out.link = '';
+        out.link = listing;
         
-        if(whatever.isFile()) {
-            link = '<a href="./' + listing + '">' + listing + '</a><br>';
+        if(out.isFile()) {
+            out.mimeType = mime.lookup(listing);
         }
-        if(whatever.isDirectory()) {
-            link = '<a href="./' + listing + '/">' + listing + '</a><br>';
+        
+        if(out.isDirectory()) {
+            out.link += '/';
         }
-        return link;
+        ['ctime', 'mtime', 'atime'].forEach(function (item) {
+            var d = out[item]
+            out[item] = d.getFullYear() +
+                '/' + ('0' + (d.getMonth() + 1)).slice(-2) +
+                '/' + ('0' + d.getDate()).slice(-2) +
+                ' ' +
+                ('0' + d.getHours()).slice(-2) +
+                ':' + ('0' + d.getMinutes()).slice(-2) +
+                ':' + ('0' + d.getSeconds()).slice(-2)
+            ;
+        });
+        return out;
     });
-    return '<p>' + links.join('') + '</p>';
+    
+    return mustache.render(template, view);
 }
 
 function autoindex (response, request, location) {
