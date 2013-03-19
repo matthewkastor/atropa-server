@@ -13,13 +13,12 @@ var fs, path;
 fs = require('fs');
 path = require('path');
 
-function route(handle, pathname, response, request) {
-	console.log('Routing request for ' + pathname);
+function route(handle, parsedUrl, response, request) {
     
     var locationIsModule = false;
     var locationIsFile = false;
     var locationIsDirectory = false;
-    var location = path.normalize(process.env.serverroot + '/' + pathname);
+    var location = path.normalize(process.env.serverroot + '/' + parsedUrl.pathname);
     
 	if (fs.existsSync(location)) {
         if(fs.statSync(location).isFile()) {
@@ -41,7 +40,7 @@ function route(handle, pathname, response, request) {
     } else if(locationIsDirectory) {
 		handle.dir(response, request, location);
 	} else {
-		console.log('No request handler found for ' + pathname);
+		console.log('No request handler found for ' + parsedUrl.pathname);
 		response.writeHead(404, {'Content-Type' : 'text/plain'});
 		response.write('404 Not found');
 		response.end();
