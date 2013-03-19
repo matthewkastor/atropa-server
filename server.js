@@ -14,9 +14,9 @@ var http = require("http"),
 
 function start(route, handle, port) {
     function onRequest(request, response) {
-        var pathname = decodeURIComponent(url.parse(request.url).pathname);
-        console.log('Request received for ' + pathname);
-        route(handle, pathname, response, request);
+        var parsedUrl = url.parse(request.url, true);
+        parsedUrl.pathname = decodeURIComponent(parsedUrl.pathname);
+        route(handle, parsedUrl, response, request);
     }
     
     http.createServer(onRequest).listen(port);
