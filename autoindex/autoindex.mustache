@@ -1,18 +1,49 @@
 <!DOCTYPE html>
 <html>
     <head>
-        {{#scripts}}
-        <script src="{{{src}}}"></script>
-        {{/scripts}}
         <title>
             Index of: {{{title}}}
         </title>
+        
+        {{#scripts}}
+        <script type="text/javascript" src="{{{src}}}"></script>
+        {{/scripts}}
+        
+        <style type="text/css">
+            table {
+                border-collapse : collapse;
+                background-color : rgb(241, 241, 241);
+            }
+            thead {
+                background-color : rgb(226, 226, 226);
+                border : solid 1px black;
+            }
+            tbody {
+                background-color : rgb(241, 241, 241);
+                border : solid 1px black;
+            }
+            tfoot {
+                background-color : rgb(226, 226, 226);
+                border : solid 1px black;
+            }
+            tr {
+                padding : 0px;
+                margin : 0px;
+            }
+            td {
+                border-bottom : dashed 1px black;
+                padding : 0px 10px;
+                margin : 0px;
+            }
+        </style>
     </head>
     <body>
         <h1>
             Index of: {{{title}}}
         </h1>
-
+        
+        <p><a href="../">Parent Directory</a></p>
+        
         <table class="sortable">
             <thead>
                 <tr>
@@ -61,6 +92,29 @@
                 </tr>
             {{/rows}}
             </tbody>
+            
+            <tfoot>
+                <tr>
+                    <th>
+                        Location
+                    </th>
+                    <th>
+                        Size
+                    </th>
+                    <th>
+                        Mime Type
+                    </th>
+                    <th>
+                        Created
+                    </th>
+                    <th>
+                        Modified
+                    </th>
+                    <th>
+                        Accessed
+                    </th>
+                </tr>
+            </tfoot>
         </table>
     </body>
 </html>
