@@ -17,11 +17,8 @@ var mime = require('mime');
 var mustache = require('mustache');
 
 mime.define({
-    'application/javascript': ['jsn']
-});
-
-mime.define({
-    'text/plain': ['ini']
+    'application/javascript': ['jsn'],
+    'text/plain': ['ini', 'url']
 });
 
 function dirList (location) {
@@ -58,7 +55,7 @@ function dirList (location) {
             out.link += '/';
         }
         ['ctime', 'mtime', 'atime'].forEach(function (item) {
-            var d = out[item]
+            var d = out[item];
             out[item] = d.getFullYear() +
                 '/' + ('0' + (d.getMonth() + 1)).slice(-2) +
                 '/' + ('0' + d.getDate()).slice(-2) +
@@ -75,7 +72,7 @@ function dirList (location) {
 }
 
 function autoindex (response, request, location) {
-    response.writeHead(500, {
+    response.writeHead(200, {
         'Content-Type' : 'text/html'
     });
     response.write(dirList(location));
@@ -91,7 +88,6 @@ function redirect (response, request, toLocation) {
 }
 
 function dir(response, request, location) {
-	console.log('request handler "dir" was called');
     var lastCharIsSlash = location.charAt(location.length - 1);
     lastCharIsSlash = (lastCharIsSlash === '/' || lastCharIsSlash === '\\');
     
@@ -137,12 +133,10 @@ function respondWithFileContents(response, path, contentType) {
 }
 
 function file (response, request, fileLocation) {
-    console.log('request handler "file" was called');
     respondWithFileContents(response, fileLocation);
 }
 
 function mod(response, request, fileLocation) {
-    console.log('request handler "mod" was called');
     var req = require(fileLocation);
     req(response, request);
 }
