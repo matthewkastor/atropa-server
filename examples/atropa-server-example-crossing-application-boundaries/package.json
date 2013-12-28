@@ -12,5 +12,5 @@
     "start": "node server.js"
   },
   "author": "",
-  "license": "BSD-2-Clause"
+  "license": "gpl-3.0"
 }

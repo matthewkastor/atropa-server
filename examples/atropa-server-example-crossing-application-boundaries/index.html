@@ -4,12 +4,21 @@
         <title>
             Index.html
         </title>
-        <script type="text/javascript" src="/getRequestInfo.js">
-        </script>
+        <script type="text/javascript"
+              src="/getRequestInfo.js">
+</script>
     </head>
-    <body onload="getRequestInfo();">
+    <body>
         <p>
             This is an example HTML file for Atropa Server. If you've copied all of the files into your project root, basic request info.jsn should be located <a href="/basic%20request%20info.jsn">here</a>.
+        </p>
+
+        <p>
+            Clicking the button below will cause your browser to get information from your server through the "basic request info.jsn" page. Then the information will be processed by "getRequestInfo.js" in your browser and added to this page here.
+        </p>
+
+        <p>
+            <button onclick="getRequestInfo();">get request info</button>
         </p>
     </body>
 </html>
