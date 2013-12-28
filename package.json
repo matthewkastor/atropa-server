@@ -1,32 +1,35 @@
 {
-                    
-    "name"          : "atropa-server",
-    "version"       : "0.1.1-1",
-    "main"          : "./atropa-server.js",
-    "description"   : "A simple http server for node with autoindexing and lazy module loading.",
-    "keywords"      : ["server", "utilities", "atropa"],
-    "homepage"      : "https://github.com/matthewkastor/atropa-server/",
-    "bugs"          : "https://github.com/matthewkastor/atropa-server/issues",
-    "author"        : {
-                        "name"      : "Matthew Kastor",
-                        "email"     : "matthewkastor@gmail.com",
-                        "url"       : "https://plus.google.com/100898583798552211130"
-    },
-    "repository"    : {
-                        "type"      : "git",
-                        "url"       : "git://github.com/matthewkastor/atropa-server.git"
-    },
-    "engines"       : {
-                        "node"      : ">=0.8.14"
-    },
-    "dependencies"  : {
-                        "mime"      : ">=1.2.9",
-                        "mustache"  : ">=0.7.2"
-    },
-    "bin" : {
-        "atropa-server" : "./bin/start-server.js"
-    },
-    "directories" : {
-        "example" : "examples"
-    }
+  "name": "atropa-server",
+  "version": "0.2.0",
+  "main": "./atropa-server.js",
+  "description": "A simple http server for node with autoindexing and lazy module loading.",
+  "keywords": [
+    "server",
+    "utilities",
+    "atropa"
+  ],
+  "homepage": "https://github.com/matthewkastor/atropa-server/",
+  "bugs": "https://github.com/matthewkastor/atropa-server/issues",
+  "author": {
+    "name": "Matthew Kastor",
+    "email": "matthewkastor@gmail.com",
+    "url": "https://plus.google.com/100898583798552211130"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/matthewkastor/atropa-server.git"
+  },
+  "engines": {
+    "node": ">=0.8.14"
+  },
+  "dependencies": {
+    "mime": ">=1.2.9",
+    "mustache": ">=0.7.2"
+  },
+  "bin": {
+    "atropa-server": "./bin/start-server.js"
+  },
+  "directories": {
+    "example": "examples"
+  }
 }
