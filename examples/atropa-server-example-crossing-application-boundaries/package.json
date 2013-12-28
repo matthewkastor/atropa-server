@@ -1,0 +1,16 @@
+{
+  "name": "atropa-server-example-crossing-application-boundaries",
+  "version": "0.0.0",
+  "description": "A sample application using the Atropa Server",
+  "main": "server.js",
+  "dependencies": {
+    "atropa-server": ">=0.1.1-1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "BSD-2-Clause"
+}

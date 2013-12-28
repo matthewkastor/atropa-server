@@ -1,0 +1,14 @@
+module.exports = function (response, request) {
+    var output = {
+        method: request.method,
+        url : request.url,
+        headers : request.headers
+    }
+    output = JSON.stringify(output, null, '    ');
+    
+    // change application/json to text/html if you're sending html
+    // change application/json to text/plain if you're sending text
+    response.writeHead(200, {'Content-Type' : 'application/json'});
+    response.write(output, 'utf8');
+    response.end();
+};
