@@ -32,7 +32,7 @@ Now I know what you're thinking, "sure, static files are all fine and good
  extension `js`, use `jsn`. The only requirement is that `jsn` files export a
  single function that accepts two parameters. The first parameter given
  to the function will be the `response` object, which you will use to send your
- servers response to arbitrary requests made to your `jsn` file. The second
+ server's response to arbitrary requests made to your `jsn` file. The second
  parameter given to the function will be the `request` object, jam packed with
  everything you'll ever want to know about the request made to your server.
  For an example of a basic `jsn` file scroll down. For details on the `request`
