@@ -1,0 +1,7 @@
+module.exports = function (response, request) {
+    // change text/plain to text/html if you're sending html
+    // change text/plain to application/json if you're sending json
+    response.writeHead(200, {'Content-Type' : 'text/plain'});
+    response.write('hello', 'utf8');
+    response.end();
+};
