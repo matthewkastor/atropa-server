@@ -1,6 +1,6 @@
 {
   "name": "atropa-server",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "main": "./atropa-server.js",
   "description": "A simple http server for node with autoindexing and lazy module loading.",
   "keywords": [
