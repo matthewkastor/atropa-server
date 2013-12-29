@@ -1,7 +1,12 @@
 module.exports = function (response, request) {
     // change text/plain to text/html if you're sending html
     // change text/plain to application/json if you're sending json
-    response.writeHead(200, {'Content-Type' : 'text/plain'});
+    response.writeHead(200, {
+        'Content-Type' : 'application/json',
+        'Cache-Control' : 'no-cache, no-store, must-revalidate',
+        'Pragma' : 'no-cache',
+        'Expires' : 'Thu, 01 Dec 1994 16:00:00 GMT'
+    });
     response.write('hello', 'utf8');
     response.end();
 };
