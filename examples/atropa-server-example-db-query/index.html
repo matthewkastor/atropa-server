@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <title>
+            Index.html
+        </title>
+        <script type="text/javascript" src="/getQueryResults.js">
+        </script>
+    </head>
+    <body>
+        <p>
+            This is an example HTML file for Atropa Server. If you've copied all of the files into your project root, sqliteQuery.jsn should be located <a href="/sqliteQuery.jsn">here</a>. By specifying various values for the q parameter you'll execute different queries against the database. The buttons will change the contents of the pre tag at the bottom of the page when you've got the server running.
+        </p>
+        
+        <ul>
+            <li><a href="/sqliteQuery.jsn?q=table">/sqliteQuery.jsn?q=table</a></li>
+            <li><a href="/sqliteQuery.jsn?q=hit_count">/sqliteQuery.jsn?q=hit_count</a></li>
+            <li><a href="/sqliteQuery.jsn?q=ip_addresses">/sqliteQuery.jsn?q=ip_addresses</a></li>
+            <li><a href="/sqliteQuery.jsn?q=browsers">/sqliteQuery.jsn?q=browsers</a></li>
+            <li><a href="/sqliteQuery.jsn?q=queries">/sqliteQuery.jsn?q=queries</a></li>
+            <li><a href="/sqliteQuery.jsn?q=reset">/sqliteQuery.jsn?q=reset</a></li>
+        </ul>
+        
+        <ul>
+            <li><button onclick="getQueryResults('table');">table</button></li>
+            <li><button onclick="getQueryResults('hit_count');">hit count</button></li>
+            <li><button onclick="getQueryResults('ip_addresses');">ip addresses</button></li>
+            <li><button onclick="getQueryResults('browsers');">browsers</button></li>
+            <li><button onclick="getQueryResults('queries');">queries</button></li>
+            <li><button onclick="getQueryResults('reset');">reset</button></li>
+        </ul>
+        
+        <pre id="display"></pre>
+    </body>
+</html>

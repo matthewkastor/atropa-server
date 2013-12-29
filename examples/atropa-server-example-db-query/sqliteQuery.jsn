@@ -1,0 +1,102 @@
+/*jslint
+node : true,
+vars : true,
+stupid : true,
+nomen : true,
+white : true
+ */
+module.exports = function (response, request) {
+    'use strict';
+    
+    function errorResponse (message) {
+        var output = JSON.stringify({error:message}, null, '    ');
+        response.writeHead(200, {
+            'Content-Type' : 'application/json',
+            'Cache-Control' : 'no-cache, no-store, must-revalidate',
+            'Pragma' : 'no-cache',
+            'Expires' : 'Thu, 01 Dec 1994 16:00:00 GMT'
+        });
+        response.write(output, 'utf8');
+        response.end();
+    }
+
+    function respond (output) {
+        output = JSON.stringify(output, null, '    ');
+        response.writeHead(200, {
+            'Content-Type' : 'application/json',
+            'Cache-Control' : 'no-cache, no-store, must-revalidate',
+            'Pragma' : 'no-cache',
+            'Expires' : 'Thu, 01 Dec 1994 16:00:00 GMT'
+        });
+        response.write(output, 'utf8');
+        response.end();
+    }
+    
+    /**
+     * Parses the request.url and grabs the value of q in the query portion of
+     *  it. Returns the sql query named by the q value or dbQueries.table if the
+     *  q value is not a property on dbQueries.
+     */
+    function getQuery() {
+        var dbQueries = require('./dbQueries.js');
+        var url = require('url');
+        // the default query to use is dbQueries.table
+        var q = 'table';
+        var tmp;
+        try {
+            tmp = url.parse(request.url, true).query.q;
+            // if the q parameter of the url matches a property name in
+            // dbQueries, use it instead of the default.
+            if (tmp in dbQueries) {
+                q = tmp;
+            }
+        } catch (e) {
+            console.error(e);
+        }
+        return dbQueries[q];
+    }
+    
+    function executeQuery () {
+        var sqlite3 = require('sqlite3');
+        var query = getQuery();
+        var db = {};
+        function handleResults (err, rows) {
+            db.close();
+            if(err) {
+                errorResponse(err.message);
+            } else {
+                respond(rows);
+            }
+        }
+        function handleReset (err) {
+            db.close();
+            if(err !== null) {
+                errorResponse(err.message);
+            } else {
+                respond({status:"Table reset!"});
+            }
+        }
+        function queryDb () {
+            var dbQueries = require('./dbQueries.js');
+            var url = require('url');
+            var q = url.parse(request.url, true).query.q;
+            var ip = request.connection.remoteAddress;
+            var useragent = request.headers['user-agent'];
+            db.run(dbQueries.add, ip, useragent, query, function (err) {
+                if(err !== null) {
+                    console.log('could not run dbQueries.add statement');
+                }
+                if(q === 'reset') {
+                    db.exec(query, handleReset);
+                } else {
+                    db.all(query, handleResults);
+                }
+            });
+        }
+        
+        db = new sqlite3.Database('./database.db3');
+        db.on('open', queryDb);
+    }
+    
+    executeQuery();
+};

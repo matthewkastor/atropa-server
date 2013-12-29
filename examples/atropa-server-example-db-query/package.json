@@ -1,0 +1,15 @@
+{
+  "name": "atropa-server-example-db-query",
+  "version": "0.0.0",
+  "description": "example app using atropa server to display results of a database query",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "gpl-3.0",
+  "dependencies": {
+    "atropa-server": ">=0.4.0",
+    "sqlite3": "~2.1.19"
+  }
+}
