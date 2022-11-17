@@ -23,7 +23,7 @@
     "node": ">=0.8.14"
   },
   "dependencies": {
-    "mime": "=1.2.9",
+    "mime": "=2.4.4",
     "mustache": "=0.7.2"
   },
   "bin": {
